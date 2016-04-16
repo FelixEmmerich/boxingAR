@@ -9,7 +9,7 @@ public class Monster : MonoBehaviour
     public float ProjectileDelay=2;
     private float _currentTime=0;
     public bool Active;
-    public float TotalHealth;
+    public float TotalHealth=10;
     private float _health;
     private Texture2D texture;
 
