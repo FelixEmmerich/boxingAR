@@ -2,5 +2,7 @@
         <resources>
           <string name="app_name">@string/app_name</string>
           <string name="glass_voice_trigger">play a game</string>
+          <string name="Welcome">Hello! Welcome to the Welten institute!Please wait while the glass scans for nearby beacons</string>
+          <string name="WFootnote">Welten Institute</string>
         </resources>
  
