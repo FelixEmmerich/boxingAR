@@ -29,7 +29,6 @@ public class beaconservice {
     @Override
     protected void onCreate(Bundle bundle) {
         super.onCreate(bundle);
-        Context context = this;
         welten = new Region("Welten Region", null, null, null);
         beaconManager = new BeaconManager(getApplicationContext());
 
