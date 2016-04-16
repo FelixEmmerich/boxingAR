@@ -1,6 +1,5 @@
 ﻿using UnityEngine;
 using System.Collections;
-using Monster;//class for the monster.
 
 /*This class is responsible for handling Globally shared variables to control GamePlay.
  * It makes controls the over all time for game play accepting events from the projectile class to adjust the time accordingly
@@ -17,7 +16,6 @@ public class GameMaster : MonoBehaviour {
 	void Start () {
 		//set of constructors
 		//**problem here construct in condition when the QR code is read
-		Monster monster=new Monster();
 	}
 	
 	// Update is called once per frame and updates all the variables
