@@ -32,11 +32,12 @@ public class Projectile : MonoBehaviour
 	    }
 	}
 
-    void OnCollisionEnter(Collision collision)
+    void OnTriggerEnter(Collider collision)
     {
         //Todo: Increase time
         if (collision.gameObject.tag == "Player")
         {
+            Debug.Log("ouch");
             Destroy(gameObject);
         }
     }
