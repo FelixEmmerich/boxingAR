@@ -4,6 +4,11 @@ using System.Runtime.CompilerServices;
 
 public class Monster : MonoBehaviour
 {
+    public MeshRenderer Renderer;
+    public Material RegularMaterial;
+    public Material DamageMaterial;
+    public float DamagedTime = 1.5f;
+    private float _currentDamagedTime=-1;
     public GameObject Target;
     public GameObject ProjectilePrefab;
     public float ProjectileDelay=2;
@@ -39,7 +44,15 @@ public class Monster : MonoBehaviour
         if (Active)
         {
             _currentTime += Time.deltaTime;
-
+            if (_currentDamagedTime >= 0&&_currentDamagedTime<DamagedTime)
+            {
+                _currentDamagedTime += Time.deltaTime;
+            }
+            else if (_currentDamagedTime > DamagedTime)
+            {
+                _currentDamagedTime = -1;
+                Renderer.material = RegularMaterial;
+            }
             if (_currentTime > ProjectileDelay)
             {
                 _currentTime = 0;
@@ -50,6 +63,8 @@ public class Monster : MonoBehaviour
 
     public void Damage(float amount)
     {
+        Renderer.material = DamageMaterial;
+        _currentDamagedTime = 0;
         _health -= amount;
         if (amount <= 0)
         {
