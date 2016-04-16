@@ -1,5 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
+using Projectile.cs;
+using Monster.cs;
 
 /*This class is responsible for handling Globally shared variables to control GamePlay.
  * It makes controls the over all time for game play accepting events from the projectile class to adjust the time accordingly
@@ -8,10 +10,12 @@ using System.Collections;
 public class GameMaster : MonoBehaviour {
 	public float GLOBAL_Time=0; 
 	public Vector3 position_User= new Vector3(0,0,0);
+	public GameObject collidedObject;
 	private float timeElapsed= Time.deltaTime;
+	private boolean isActive;
+	public GameObject[] monsterCount = new GameObject[3]; //array to hold instance of all the monster gameobjects
 
-
-	// Use this for initialization
+	// Use this for initializatio3
 	void Start () {
 		//set of constructors
 		//**problem here construct in condition when the QR code is read
@@ -23,23 +27,26 @@ public class GameMaster : MonoBehaviour {
 		OnGUI ();
 	}
 
-	/*private boolean gameOverCheck(){
-		if(timeElapsed>=GLOBAL_Time){
-			return true;
-		}else {
-			return false;
-		}
-	}*/
-
 	//method to reduce the time on event that the projectile hits the player when the monster is activated
 	private void onPunchTimeDeduction(){
-		//if(true){
+		if(isActive){
 			GLOBAL_Time += 5;
-		//}
+		}
 	}
 
 	//display the current time taken
 	private void OnGUI(){
 		GUI.TextField (new Rect(), GLOBAL_Time.ToString());
 	}
+
+	public void addToMonsterCount(boolean isActive) {
+		MonsterCount[3]= Monster.FindObjectOfType
+	}
+
+	private boolean gameOverCheck(){
+		if (monsterCount[3].length==0) {
+			//end game
+			}
+	}
+			
 }
