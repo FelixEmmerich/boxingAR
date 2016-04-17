@@ -1,25 +1,26 @@
 ﻿using UnityEngine;
 using System.Collections;
-using JetBrains;
 using System.IO;
-using System.Net;
-
-public class Scores : MonoBehaviour {
 
 
-	JSONObject j;
+public class LoadScores : MonoBehaviour {
+
+	string filestring = @SavePath + "/" + CustomDirectory + "/"; 
+
 
 	// Use this for initialization
 	void Start ()
 	{
+		float[] scores;
+		StreamReader inp = new StreamReader (filestring);
 
-		using (StreamReader reader = new StreamReader ("scores.json")) {
-			string json = reader.ReadToEnd ();
-			j = new JSONObject(json);
+		while (!inp.EndOfStream)
+		{
+			float inp_ln = inp.ReadLine ();
+			scores += inp_ln;
 		}
-			
-		//string name = j.GetField ("Name");
-		//float time = j.GetField ("Time");
+		inp.Close ();
+
 	}
 	
 	// Update is called once per frame
@@ -27,3 +28,4 @@ public class Scores : MonoBehaviour {
 	
 	}
 }
+
