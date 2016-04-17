@@ -8,7 +8,7 @@ using System.Collections.Generic;
 public class GameMaster : MonoBehaviour {
 	public float GLOBAL_Time=0; 
 	private bool isActive=true;
-	public List<Monster> Monsters; //array to hold instance of all the monster gameobjects
+	public List<Monster> Monsters; //List to hold instance of all the monster gameobjects
 
 	// Use this for initialization
 	void Start ()
