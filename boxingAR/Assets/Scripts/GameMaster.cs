@@ -1,7 +1,5 @@
 ﻿using UnityEngine;
-using System.Collections;
-using Projectile.cs;
-using Monster.cs;
+using System.Collections.Generic;
 
 /*This class is responsible for handling Globally shared variables to control GamePlay.
  * It makes controls the over all time for game play accepting events from the projectile class to adjust the time accordingly
@@ -9,22 +7,30 @@ using Monster.cs;
 
 public class GameMaster : MonoBehaviour {
 	public float GLOBAL_Time=0; 
-	public Vector3 position_User= new Vector3(0,0,0);
 	public GameObject collidedObject;
-	private float timeElapsed= Time.deltaTime;
-	private boolean isActive;
-	public GameObject[] monsterCount = new GameObject[3]; //array to hold instance of all the monster gameobjects
+	private bool isActive=true;
+	public List<Monster> Monsters; //array to hold instance of all the monster gameobjects
 
-	// Use this for initializatio3
-	void Start () {
+	// Use this for initialization
+	void Start ()
+    {
 		//set of constructors
 		//**problem here construct in condition when the QR code is read
-	}
+	    var MyMonsters = FindObjectsOfType<Monster>();
+	    foreach (Monster monster in MyMonsters)
+	    {
+	        monster.Master = this;
+	        Monsters.Add(monster);
+	    }
+    }
 	
 	// Update is called once per frame and updates all the variables
-	void Update () {
-		GLOBAL_Time = GLOBAL_Time + timeElapsed;
-		OnGUI ();
+	void Update ()
+    {
+	    if (isActive)
+	    {
+	        GLOBAL_Time = GLOBAL_Time + Time.deltaTime;
+	    }
 	}
 
 	//method to reduce the time on event that the projectile hits the player when the monster is activated
@@ -35,18 +41,30 @@ public class GameMaster : MonoBehaviour {
 	}
 
 	//display the current time taken
-	private void OnGUI(){
-		GUI.TextField (new Rect(), GLOBAL_Time.ToString());
+	private void OnGUI()
+    {
+	    if (isActive)
+	    {
+	        GUI.TextField(new Rect(0, Screen.height, Screen.width/2, Screen.height/10), GLOBAL_Time.ToString());
+	    }
+	    else
+	    {
+	        //Todo: Highscore stuff
+	    }
 	}
 
-	public void addToMonsterCount(boolean isActive) {
-		MonsterCount[3]= Monster.FindObjectOfType
+	private void GameOverCheck()
+    {
+		if (Monsters.Count==0)
+		{
+		    isActive = false;
+		}
 	}
 
-	private boolean gameOverCheck(){
-		if (monsterCount[3].length==0) {
-			//end game
-			}
-	}
+    public void RemoveMonster(Monster monster)
+    {
+        Monsters.Remove(monster);
+        GameOverCheck();
+    }
 			
 }

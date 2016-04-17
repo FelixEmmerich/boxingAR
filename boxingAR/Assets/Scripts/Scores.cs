@@ -10,14 +10,16 @@ public class Scores : MonoBehaviour {
 	JSONObject j;
 
 	// Use this for initialization
-	void Start () {
-		
+	void Start ()
+	{
+	    JSONObject j;
+
 		using (StreamReader reader = new StreamReader ("scores.json")) {
-			String json = reader.ReadToEnd ();
-			JSONObject j = new JSONObject(json);
+			string json = reader.ReadToEnd ();
+			j = new JSONObject(json);
 		}
 			
-		String name = j.GetField ("Name");
+		string name = j.GetField ("Name");
 		float time = j.GetField ("Time");
 	}
 	

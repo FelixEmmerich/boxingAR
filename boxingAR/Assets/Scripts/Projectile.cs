@@ -6,6 +6,8 @@ public class Projectile : MonoBehaviour
 {
     public float LifeSpan=2;
     public float Speed=1;
+    public GameMaster Master;
+    public float TimePenalty = 3;
 
 	// Use this for initialization
 	void Start ()
@@ -13,8 +15,9 @@ public class Projectile : MonoBehaviour
 	}
 
     //Todo: Add reference to main object to increase timer on collision
-    public void Initialize(Vector3 direction)
+    public void Initialize(Vector3 direction, GameMaster master)
     {
+        Master = master;
         Rigidbody rigid = GetComponent<Rigidbody>();
         if (rigid!=null)
         {
@@ -34,10 +37,9 @@ public class Projectile : MonoBehaviour
 
     void OnTriggerEnter(Collider collision)
     {
-        //Todo: Increase time
         if (collision.gameObject.tag == "Player")
         {
-            Debug.Log("ouch");
+            Master.GLOBAL_Time += TimePenalty;
             Destroy(gameObject);
         }
     }

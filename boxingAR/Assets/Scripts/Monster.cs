@@ -18,6 +18,7 @@ public class Monster : MonoBehaviour
     public float TotalHealth=10;
     private float _health;
     private Texture2D texture;
+    public GameMaster Master;
 
 	// Use this for initialization
 	void Start ()
@@ -35,7 +36,7 @@ public class Monster : MonoBehaviour
         Projectile pr = go.GetComponent<Projectile>();
         if (pr != null)
         {
-            pr.Initialize((Camera.main.transform.position-transform.position).normalized);
+            pr.Initialize((Camera.main.transform.position-transform.position).normalized, Master);
         }
     }
 
@@ -70,7 +71,7 @@ public class Monster : MonoBehaviour
         _health -= amount;
         if (amount <= 0)
         {
-            //Todo: Notify the main class upon death
+            Master.RemoveMonster(this);
             Destroy(gameObject);
         }
     }
