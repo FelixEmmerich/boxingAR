@@ -3,7 +3,7 @@
 public class Projectile : MonoBehaviour
 {
     public float LifeSpan=2;
-    public float Speed=1;
+    public float Speed=0.01f;
     public GameMaster Master;
     public float TimePenalty = 3;
 
@@ -26,6 +26,7 @@ public class Projectile : MonoBehaviour
 	// Update is called once per frame
 	void Update ()
 	{
+        Debug.Log(transform.position);
 	    LifeSpan -= Time.deltaTime;
 	    if (LifeSpan <= 0)
 	    {
