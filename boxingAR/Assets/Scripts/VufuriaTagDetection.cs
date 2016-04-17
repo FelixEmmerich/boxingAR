@@ -16,9 +16,11 @@ public class VufuriaTagDetection : MonoBehaviour {
 	void Update () {
         StateManager sManager = TrackerManager.Instance.GetStateManager();
         IEnumerable<TrackableBehaviour> activeTrackables = sManager.GetActiveTrackableBehaviours();
-        foreach (TrackableBehaviour tb in activeTrackables)
+        foreach (TrackableBehaviour trackable in activeTrackables)
         {
+            if(trackable is MarkerBehaviour) { 
             isActive = true;
+            }
         }
         isActive = false;
     }
