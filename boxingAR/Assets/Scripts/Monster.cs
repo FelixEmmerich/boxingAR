@@ -20,6 +20,7 @@ public class Monster : MonoBehaviour
     private Texture2D texture;
     public GameMaster Master;
     public float TriggerDistance = 10;
+    public GameObject SpawnLocation;
 
 	// Use this for initialization
 	void Start ()
@@ -33,7 +34,7 @@ public class Monster : MonoBehaviour
 
     private void LaunchProjectile()
     {
-        GameObject go = (GameObject)Instantiate(ProjectilePrefab,transform.position,transform.rotation);
+        GameObject go = (GameObject)Instantiate(ProjectilePrefab,SpawnLocation.transform.position,transform.rotation);
         Projectile pr = go.GetComponent<Projectile>();
         if (pr != null)
         {
