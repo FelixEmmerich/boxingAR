@@ -7,7 +7,6 @@ using System.Collections.Generic;
 
 public class GameMaster : MonoBehaviour {
 	public float GLOBAL_Time=0; 
-	public GameObject collidedObject;
 	private bool isActive=true;
 	public List<Monster> Monsters; //array to hold instance of all the monster gameobjects
 
@@ -45,7 +44,7 @@ public class GameMaster : MonoBehaviour {
     {
 	    if (isActive)
 	    {
-	        GUI.TextField(new Rect(0, Screen.height, Screen.width/2, Screen.height/10), GLOBAL_Time.ToString());
+	        GUI.TextField(new Rect(Screen.width/4, Screen.height*0.9f, Screen.width/2, Screen.height/10), GLOBAL_Time.ToString());
 	    }
 	    else
 	    {

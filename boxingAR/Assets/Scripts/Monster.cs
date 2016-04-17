@@ -19,6 +19,7 @@ public class Monster : MonoBehaviour
     private float _health;
     private Texture2D texture;
     public GameMaster Master;
+    public float TriggerDistance = 10;
 
 	// Use this for initialization
 	void Start ()
@@ -43,25 +44,33 @@ public class Monster : MonoBehaviour
     // Update is called once per frame
 	void Update ()
 	{
-        if (Active)
-        {
-            _currentTime += Time.deltaTime;
-            if (_currentDamagedTime >= 0&&_currentDamagedTime<DamagedTime)
-            {
-                _currentDamagedTime += Time.deltaTime;
-            }
-            else if (_currentDamagedTime > DamagedTime)
-            {
-                _currentDamagedTime = -1;
-                Renderer.material = RegularMaterial;
-            }
-            if (_currentTime > ProjectileDelay[_delayIndex])
-            {
-                _delayIndex=(_delayIndex+1)%ProjectileDelay.Length;
-                _currentTime = 0;
-                LaunchProjectile();
-            } 
-        }
+	    if (Active)
+	    {
+	        _currentTime += Time.deltaTime;
+	        if (_currentDamagedTime >= 0 && _currentDamagedTime < DamagedTime)
+	        {
+	            _currentDamagedTime += Time.deltaTime;
+	        }
+	        else if (_currentDamagedTime > DamagedTime)
+	        {
+	            _currentDamagedTime = -1;
+	            Renderer.material = RegularMaterial;
+	        }
+	        if (_currentTime > ProjectileDelay[_delayIndex])
+	        {
+	            _delayIndex = (_delayIndex + 1)%ProjectileDelay.Length;
+	            _currentTime = 0;
+	            LaunchProjectile();
+	        }
+	    }
+	    else
+	    {
+	        if ((transform.position - Target.transform.position).magnitude <= TriggerDistance)
+	        {
+                Debug.Log("asdb");
+	            Active = true;
+	        }
+	    }
 	}
 
     public void Damage(float amount)

@@ -12,15 +12,14 @@ public class Scores : MonoBehaviour {
 	// Use this for initialization
 	void Start ()
 	{
-	    JSONObject j;
 
 		using (StreamReader reader = new StreamReader ("scores.json")) {
 			string json = reader.ReadToEnd ();
 			j = new JSONObject(json);
 		}
 			
-		string name = j.GetField ("Name");
-		float time = j.GetField ("Time");
+		//string name = j.GetField ("Name");
+		//float time = j.GetField ("Time");
 	}
 	
 	// Update is called once per frame
