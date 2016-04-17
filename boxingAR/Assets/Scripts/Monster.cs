@@ -11,7 +11,8 @@ public class Monster : MonoBehaviour
     private float _currentDamagedTime=-1;
     public GameObject Target;
     public GameObject ProjectilePrefab;
-    public float ProjectileDelay=2;
+    public float [] ProjectileDelay;
+    public int _delayIndex;
     private float _currentTime=0;
     public bool Active;
     public float TotalHealth=10;
@@ -53,8 +54,9 @@ public class Monster : MonoBehaviour
                 _currentDamagedTime = -1;
                 Renderer.material = RegularMaterial;
             }
-            if (_currentTime > ProjectileDelay)
+            if (_currentTime > ProjectileDelay[_delayIndex])
             {
+                _delayIndex=(_delayIndex+1)%ProjectileDelay.Length;
                 _currentTime = 0;
                 LaunchProjectile();
             } 
