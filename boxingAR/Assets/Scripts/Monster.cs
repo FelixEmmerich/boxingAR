@@ -79,7 +79,7 @@ public class Monster : MonoBehaviour
         Renderer.material = DamageMaterial;
         _currentDamagedTime = 0;
         _health -= amount;
-        if (amount <= 0)
+        if (_health <= 0)
         {
             Master.RemoveMonster(this);
             Destroy(gameObject);
