@@ -15,9 +15,9 @@ public class DamageDealer_Leap : DamageDealer
     {
         PrevPos = CurrPos;
         CurrPos = transform.position;
-        if (_previouslyBlocking != Mathf.Abs(transform.eulerAngles.x - 270) < BlockAccuracy)
+        if (_previouslyBlocking != Mathf.Abs(transform.localEulerAngles.x - 90) < BlockAccuracy)
         {
-            MyCollider.isTrigger = _previouslyBlocking;
+            MyCollider.gameObject.tag = _previouslyBlocking?"Player":"Untagged";
             _previouslyBlocking = !_previouslyBlocking;
         }
     }

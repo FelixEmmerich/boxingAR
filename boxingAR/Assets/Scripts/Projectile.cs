@@ -26,7 +26,6 @@ public class Projectile : MonoBehaviour
 	// Update is called once per frame
 	void Update ()
 	{
-        Debug.Log(transform.position);
 	    LifeSpan -= Time.deltaTime;
 	    if (LifeSpan <= 0)
 	    {
@@ -38,6 +37,7 @@ public class Projectile : MonoBehaviour
     {
         if (collision.gameObject.tag == "Player")
         {
+            Master.ChangeColor(Color.red);
             Master.GLOBAL_Time += TimePenalty;
             Destroy(gameObject);
         }

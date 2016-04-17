@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System.Collections;
+using UnityEngine;
 using System.Collections.Generic;
 
 /*This class is responsible for handling Globally shared variables to control GamePlay.
@@ -9,6 +10,7 @@ public class GameMaster : MonoBehaviour {
 	public float GLOBAL_Time=0; 
 	private bool isActive=true;
 	public List<Monster> Monsters; //List to hold instance of all the monster gameobjects
+    public Color TextColor=Color.white;
 
 	// Use this for initialization
 	void Start ()
@@ -44,6 +46,7 @@ public class GameMaster : MonoBehaviour {
     {
 	    if (isActive)
 	    {
+	        GUI.color = TextColor;
 	        GUI.TextField(new Rect(Screen.width/4, Screen.height*0.9f, Screen.width/2, Screen.height/10), GLOBAL_Time.ToString());
 	    }
 	    else
@@ -64,6 +67,18 @@ public class GameMaster : MonoBehaviour {
     {
         Monsters.Remove(monster);
         GameOverCheck();
+    }
+
+    public void ChangeColor(Color color)
+    {
+        TextColor = color;
+        StartCoroutine(BackToBlack());
+    }
+
+    IEnumerator BackToBlack()
+    {
+        yield return new WaitForSeconds(0.25f);
+        TextColor = Color.white;
     }
 			
 }

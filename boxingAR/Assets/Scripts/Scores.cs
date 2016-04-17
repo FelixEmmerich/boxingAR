@@ -5,14 +5,14 @@ using System.IO;
 
 public class LoadScores : MonoBehaviour {
 
-	string filestring = @SavePath + "/" + CustomDirectory + "/"; 
+	/*//string filestring = @SavePath + "/" + CustomDirectory + "/"; 
 
 
 	// Use this for initialization
 	void Start ()
 	{
 		float[] scores;
-		StreamReader inp = new StreamReader (filestring);
+		//StreamReader inp = new StreamReader (filestring);
 
 		while (!inp.EndOfStream)
 		{
@@ -26,6 +26,6 @@ public class LoadScores : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 	
-	}
+	}*/
 }
 
